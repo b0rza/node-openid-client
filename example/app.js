@@ -86,11 +86,21 @@ module.exports = (issuer) => {
     }
 
     const metadata = Object.assign({
+      client_name: this.params.preset,
       post_logout_redirect_uris: [url.resolve(this.href, '/')],
       redirect_uris: [url.resolve(this.href, '/cb')],
     }, preset.registration);
 
-    const client = yield issuer.Client.register(metadata, keystore);
+    let client = null;
+    if (this.params.preset === 'oncourse') {
+      client = new issuer.Client(preset.metadata, keystore); // => Client
+      console.log(preset.metadata);
+    }
+    else {
+      client = yield issuer.Client.register(metadata, keystore);
+    }
+    console.log(client);
+
     CLIENTS.set(this.session.id, client);
     this.session.authorization_params = preset.authorization_params;
 

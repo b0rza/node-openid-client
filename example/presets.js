@@ -1,4 +1,42 @@
 module.exports = {
+
+  // =============================================
+  // ONCOURSE STATIC CLIENT
+  // =============================================
+  oncourse: {
+    registration: {
+      grant_types: ['authorization_code'],
+      response_types: ['code'],
+    },
+    keystore: undefined,
+    authorization_params: {
+      scope: 'openid phone',
+    },
+    metadata: {
+      "application_type": "web",
+      "client_id": "229aabc0a853740618fcd3855bec1963_oncourse_dev",
+      "client_name": "oncourse_dev",
+      "client_secret": "3730222a6d2001619369dece495d7fed2bf713aac3e6bf07bd713f07c6698835b133f9a76a4a40b240c4ccb60e3fc0216e1f53fbc5c1d78011a030cb044e1886",
+      "client_secret_expires_at": 0,
+      "grant_types": [
+          "authorization_code"
+      ],
+      "id_token_signed_response_alg": "RS256",
+      "post_logout_redirect_uris": [
+          "http://openid.client.local:3001/"
+      ],
+      "redirect_uris": [
+          "http://openid.client.local:3001/cb"
+      ],
+      "require_auth_time": false,
+      "response_types": [
+          "code"
+      ],
+      "subject_type": "public",
+      "token_endpoint_auth_method": "client_secret_basic"
+    }
+  },
+
   basic: {
     registration: {
       grant_types: ['authorization_code'],
@@ -9,6 +47,7 @@ module.exports = {
       scope: 'openid phone',
     },
   },
+
   with_refresh: {
     registration: {
       grant_types: ['authorization_code', 'refresh_token'],
